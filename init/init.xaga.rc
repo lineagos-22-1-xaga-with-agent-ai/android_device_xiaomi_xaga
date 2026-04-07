@@ -30,7 +30,22 @@ on boot && property:ro.boot.product.hardware.sku=xaga
     enable vendor.secure_element
     enable vendor.nfc_hal_service
 
+on boot
+    # Enable ADB by default
+    setprop persist.sys.usb.config adb
+
+on post-fs-data
+    # Enable adb root by default (needed for adb root to work)
+    mkdir /data/adbroot 0770 root root
+    write /data/adbroot/enabled 1
+
 on boot && property:ro.boot.product.hardware.sku=xagapro
     enable mtk_secure_element_hal_service
     enable vendor.secure_element
     enable vendor.nfc_hal_service
+
+# Set Sogou Input Method as the default IME
+on property:sys.boot_completed=1
+    # Enable and set SogouInput as the default input method
+    exec -- /system/bin/sh -c "cmd settings put secure enabled_input_methods com.sohu.inputmethod.sogou/.SogouIME"
+    exec -- /system/bin/sh -c "cmd settings put secure default_input_method com.sohu.inputmethod.sogou/.SogouIME"

@@ -11,6 +11,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from xaga device
 $(call inherit-product, device/xiaomi/xaga/device.mk)
 
+# Keep adb insecure on this product through Lineage's supported switch so
+# ro.adb.secure is emitted only once in the system property set.
+WITH_ADB_INSECURE := true
+
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 

@@ -51,6 +51,23 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.xaga.rc
 
+# AI Agent
+PRODUCT_PACKAGES += \
+    agent
+
+# Sogou Input Method
+PRODUCT_PACKAGES += \
+    SogouInput
+
+# Python3 for MCP Server
+PRODUCT_PACKAGES += \
+    python3
+
+# MCP Server scripts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/data/local/tmp/mcp_server.py:/data/local/tmp/mcp_server.py \
+    $(LOCAL_PATH)/data/local/tmp/mcp_tools_example.py:/data/local/tmp/mcp_tools_example.py
+
 # Shipping API Level
 PRODUCT_SHIPPING_API_LEVEL := 31
 
